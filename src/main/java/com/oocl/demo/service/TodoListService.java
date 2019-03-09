@@ -15,9 +15,9 @@ public class TodoListService {
         this.repositpory = repositpory;
     }
 
-    public void addTodoItem(TodoItem item){
+    public TodoItem addTodoItem(TodoItem item){
         item.setCreated(new Date());
-        System.out.println(this.repositpory.save(item));
+        return this.repositpory.save(item);
     }
 
 
