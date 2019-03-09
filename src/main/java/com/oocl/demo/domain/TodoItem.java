@@ -2,30 +2,43 @@ package com.oocl.demo.domain;
 
 
 import javax.persistence.*;
-import java.util.UUID;
+import java.util.Date;
 
 
 @Entity
+@Table(name = "todo_item")
 public class TodoItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-
+    private String content;
     private Boolean finished;
+    private Date created;
+    private Date done;
+
+    @Override
+    public String toString() {
+        return "TodoItem{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", finished=" + finished +
+                ", created=" + created +
+                ", done=" + done +
+                '}';
+    }
 
     public TodoItem() {
     }
 
-    public TodoItem(String title, Boolean finished) {
-        this.title = title;
+    public TodoItem(String content, Boolean finished) {
+        this.content = content;
         this.finished = finished;
     }
 
-    public TodoItem(Long id, String title, Boolean finished) {
+    public TodoItem(Long id, String content, Boolean finished) {
         this.id = id;
-        this.title = title;
+        this.content = content;
         this.finished = finished;
     }
 
@@ -37,12 +50,12 @@ public class TodoItem {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getContent() {
+        return content;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Boolean getFinished() {
@@ -51,5 +64,21 @@ public class TodoItem {
 
     public void setFinished(Boolean finished) {
         this.finished = finished;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getDone() {
+        return done;
+    }
+
+    public void setDone(Date done) {
+        this.done = done;
     }
 }
