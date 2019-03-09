@@ -1,17 +1,15 @@
-package com.example.demo.domain;
+package com.oocl.demo.domain;
 
 
-import org.springframework.data.annotation.Id;
-
+import javax.persistence.*;
 import java.util.UUID;
 
-/**
- * @author Howells
- * @DATE 03/08/2019
- */
 
+@Entity
 public class TodoItem {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String title;
 
@@ -21,22 +19,21 @@ public class TodoItem {
     }
 
     public TodoItem(String title, Boolean finished) {
-        this.id=UUID.randomUUID().toString();
         this.title = title;
         this.finished = finished;
     }
 
-    public TodoItem(String id, String title, Boolean finished) {
+    public TodoItem(Long id, String title, Boolean finished) {
         this.id = id;
         this.title = title;
         this.finished = finished;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
