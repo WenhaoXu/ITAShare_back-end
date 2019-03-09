@@ -1,12 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.TodoItem;
+import com.example.demo.domain.TodoList;
 import com.example.demo.service.TodoListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Howells
@@ -17,23 +17,22 @@ public class TodoListController {
     @Autowired
     private TodoListService todoListService;
 
-    @GetMapping
-    public List<TodoItem> getAllItems(){
-        return  todoListService.getAllItems();
+    @GetMapping("/todo")
+    public List<TodoList> get() {
+
+        return todoListService.getAllItems();
     }
 
-    @PostMapping
-    public List<TodoItem> addTodoList(@RequestBody List<TodoItem> list){
-        return todoListService.insertTodoItems(list);
+    @PostMapping("/todo")
+    public TodoList post(@RequestParam String title) {
+        TodoList todoList = new TodoList(title, false);
+        return  todoListService.insertTodoItems(todoList);
+
     }
 
-    @PutMapping
-    public boolean updateTodoList(@RequestBody List<TodoItem> list){
-        return todoListService.updateTodoItems(list);
-    }
-
-    @DeleteMapping
-    public boolean deleteItems(@RequestBody List<String> ids){
-        return  todoListService.deleteItems(ids);
+    @PutMapping("/todo")
+    public TodoList put(@RequestParam String id,@RequestParam String title,@RequestParam Boolean finished) {
+        TodoList todoList = new TodoList(id, title, finished);
+       return todoListService.updateTodoItems(todoList);
     }
 }
