@@ -10,23 +10,23 @@ import java.util.UUID;
  * @DATE 03/08/2019
  */
 
-public class TodoList {
+public class TodoItem {
     private String id;
 
     private String title;
 
     private Boolean finished;
 
-    public TodoList() {
+    public TodoItem() {
     }
 
-    public TodoList(String title, Boolean finished) {
+    public TodoItem(String title, Boolean finished) {
         this.id=UUID.randomUUID().toString();
         this.title = title;
         this.finished = finished;
     }
 
-    public TodoList(String id, String title, Boolean finished) {
+    public TodoItem(String id, String title, Boolean finished) {
         this.id = id;
         this.title = title;
         this.finished = finished;

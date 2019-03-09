@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.TodoList;
+import com.example.demo.domain.TodoItem;
 import com.example.demo.repository.TodoListRepositpory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,18 +16,18 @@ public class TodoListService {
     @Autowired
     private TodoListRepositpory repositpory;
 
-    public TodoList insertTodoItems(TodoList item){
+    public TodoItem insertTodoItems(TodoItem item){
          repositpory.insert(item);
         return item;
     }
 
-    public  TodoList updateTodoItems(TodoList item){
+    public TodoItem updateTodoItems(TodoItem item){
         repositpory.save(item);
         return item;
     }
 
 
-    public List<TodoList> getAllItems() {
+    public List<TodoItem> getAllItems() {
         return repositpory.findAll();
     }
 
