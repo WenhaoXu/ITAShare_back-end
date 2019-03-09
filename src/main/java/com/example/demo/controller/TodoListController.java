@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  * @author Howells
  * @DATE 03/08/2019
  */
-@RestController("/TodoList")
+@RestController
 public class TodoListController {
     @Autowired
     private TodoListService todoListService;
