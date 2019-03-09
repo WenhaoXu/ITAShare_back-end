@@ -10,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
@@ -33,7 +35,7 @@ public class TodoListRepositporyTest {
     }
 
     @Test
-    public void should_get_total_number_of_3_items(){
+    public void should_total_size_increase_1_after_1_item_added(){
         //given
         TodoItem item = new TodoItem("do homework", false);
         int oldSize = this.repositpory.findAll().size();
@@ -43,5 +45,21 @@ public class TodoListRepositporyTest {
         int newSize = this.repositpory.findAll().size();
         assertThat(newSize, is(oldSize + 1));
     }
+
+    @Test
+    public void should_total_size_increase_3_after_item_list_with_3_items_inserted(){
+        //given
+        TodoItem item1 = new TodoItem("do homework", false);
+        TodoItem item2 = new TodoItem("do homework", false);
+        TodoItem item3 = new TodoItem("do homework", false);
+        List<TodoItem> items = Arrays.asList(item1, item2, item3);
+        int oldSize = this.repositpory.findAll().size();
+        //when
+        this.repositpory.saveAll(items);
+        //then
+        int newSize = this.repositpory.findAll().size();
+        assertThat(newSize, is(oldSize + items.size()));
+    }
+
 
 }
