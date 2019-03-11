@@ -30,7 +30,7 @@ public class TodoListService {
     }
 
     public  boolean deleteItem( TodoItem item){
-        repositpory.deleteById(item.getId());
+        repositpory.deleteById(Long.parseLong(item.getId().toString()));
         return true;
     }
 

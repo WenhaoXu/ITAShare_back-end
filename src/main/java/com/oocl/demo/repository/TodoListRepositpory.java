@@ -2,7 +2,6 @@ package com.oocl.demo.repository;
 
 import com.oocl.demo.domain.TodoItem;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * @DATE 03/08/2019
  */
 @Repository
-public interface TodoListRepositpory extends JpaRepository<TodoItem,String> {
+public interface TodoListRepositpory extends JpaRepository<TodoItem,Long> {
 }
