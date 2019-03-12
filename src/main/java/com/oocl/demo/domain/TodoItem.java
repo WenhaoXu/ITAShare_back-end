@@ -12,7 +12,7 @@ public class TodoItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String content;
+    private String title;
     private Boolean finished;
     private Date created;
     private Date done;
@@ -21,7 +21,7 @@ public class TodoItem {
     public String toString() {
         return "TodoItem{" +
                 "id=" + id +
-                ", content='" + content + '\'' +
+                ", title='" + title + '\'' +
                 ", finished=" + finished +
                 ", created=" + created +
                 ", done=" + done +
@@ -31,14 +31,14 @@ public class TodoItem {
     public TodoItem() {
     }
 
-    public TodoItem(String content, Boolean finished) {
-        this.content = content;
+    public TodoItem(String title, Boolean finished) {
+        this.title = title;
         this.finished = finished;
     }
 
-    public TodoItem(Long id, String content, Boolean finished) {
+    public TodoItem(Long id, String title, Boolean finished) {
         this.id = id;
-        this.content = content;
+        this.title = title;
         this.finished = finished;
     }
 
@@ -50,12 +50,12 @@ public class TodoItem {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getTitle() {
+        return title;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Boolean getFinished() {
