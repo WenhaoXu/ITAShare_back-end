@@ -4,9 +4,9 @@ import com.oocl.demo.domain.TodoItem;
 import com.oocl.demo.repository.TodoListRepositpory;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
-import static org.junit.Assert.*;
+import java.util.Collections;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -34,4 +34,35 @@ public class TodoListServiceTest {
         //then
         verify(this.repositpory).save(item);
     }
+
+    @Test
+    public void should_Update_Todo_Items() {
+        //given
+        TodoItem todoItem = mock(TodoItem.class);
+        //when
+        todoListService.updateTodoItems(todoItem);
+        //then
+        verify(repositpory).save(todoItem);
+    }
+
+    @Test
+    public void should_Get_All_Items() {
+        //given
+        Collections.singletonList(mock(TodoItem.class));
+        //when
+        todoListService.getAllItems();
+        //then
+        verify(repositpory).findAll();
+    }
+
+    @Test
+    public void should_delete_Item_By_Id(){
+        //given
+        TodoItem todoItem = mock(TodoItem.class);
+        //when
+        todoListService.deleteItem(todoItem);
+        //then
+        verify(repositpory).deleteById(todoItem.getId());
+    }
+
 }
