@@ -12,34 +12,34 @@ public class TodoItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String content;
-    private String type;
+    private String title;
+    private Boolean finished;
+    private Date created;
+    private Date done;
 
-
-    public TodoItem(String content, String type) {
-        this.content = content;
-        this.type = type;
-    }
-
-    public TodoItem(String content) {
-        this.content = content;
-    }
-
-    public TodoItem(long id, String content, String type) {
-        this.id = id;
-        this.content = content;
-        this.type = type;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    @Override
+    public String toString() {
+        return "TodoItem{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", finished=" + finished +
+                ", created=" + created +
+                ", done=" + done +
+                '}';
     }
 
     public TodoItem() {
+    }
+
+    public TodoItem(String title, Boolean finished) {
+        this.title = title;
+        this.finished = finished;
+    }
+
+    public TodoItem(Long id, String title, Boolean finished) {
+        this.id = id;
+        this.title = title;
+        this.finished = finished;
     }
 
     public Long getId() {
@@ -50,13 +50,35 @@ public class TodoItem {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getTitle() {
+        return title;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
+    public Boolean getFinished() {
+        return finished;
+    }
 
+    public void setFinished(Boolean finished) {
+        this.finished = finished;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getDone() {
+        return done;
+    }
+
+    public void setDone(Date done) {
+        this.done = done;
+    }
 }
