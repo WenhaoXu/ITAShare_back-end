@@ -18,10 +18,12 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -44,14 +46,62 @@ public class TodoListControllerTest {
 
     @Test
     public void should_return_201_after_item_added_successfully() throws Exception {
-//        given
-        TodoItem item = new TodoItem("do homework", false);
+        // given
+        TodoItem item = new TodoItem("do homework", "未完成");
         when(this.todoListService.addTodoItem(any())).thenReturn(item);
-//        when & then
+        // when & then
         mockMvc.perform(
                 post(url).content(mapper.writeValueAsString(item)).contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isCreated())
                 .andExpect(content().string(mapper.writeValueAsString(item)));
     }
+
+    @Test
+    public void should_return_all_items() throws Exception {
+        // given
+        TodoItem item1 = new TodoItem("do homework", "未完成");
+        TodoItem item2 = new TodoItem("do homework", "未完成");
+        TodoItem item3 = new TodoItem("do homework", "已完成");
+        when(this.todoListService.getItems(any())).thenReturn(Arrays.asList(item1, item2, item3));
+        // when & then
+        mockMvc.perform(
+                get(url + "?filter=全部"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(mapper.writeValueAsString(Arrays.asList(item1, item2, item3))));
+    }
+
+    @Test
+    public void should_return_status_code_with_204_when_update_successfully() throws Exception {
+        // given
+        TodoItem item = new TodoItem("do homework", "未完成");
+        // when & then
+        mockMvc.perform(
+                put(url).content(mapper.writeValueAsString(item)).contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void should_return_status_code_with_204_when_update_partially_successfully() throws Exception {
+        // given
+        TodoItem item1 = new TodoItem("do homework", "未完成");
+        TodoItem item2 = new TodoItem("do homework", "未完成");
+        when(this.todoListService.getItemById(any())).thenReturn(item2);
+        // when & then
+        mockMvc.perform(
+                patch(url).content(mapper.writeValueAsString(item1)).contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void should_return_204_status_code_when_delete_item_successfully() throws Exception {
+        // given
+        TodoItem item1 = new TodoItem("do homework", "未完成");
+        TodoItem item2 = new TodoItem("do homework", "未完成");
+        // when & then
+        mockMvc.perform(
+                delete(url).content(mapper.writeValueAsString(item1)).contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isNoContent());
+    }
+
 
 }

@@ -20,7 +20,7 @@ dependencies {
 	runtime("mysql:mysql-connector-java")
 	testCompile("org.springframework.boot:spring-boot-starter-test")
 
-//    implementation 'com.h2database:h2'
+    implementation 'com.h2database:h2'
 //	compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.6'
 //	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
 	runtime("mysql:mysql-connector-java")

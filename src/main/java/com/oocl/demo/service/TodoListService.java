@@ -3,6 +3,7 @@ package com.oocl.demo.service;
 import com.oocl.demo.domain.TodoItem;
 import com.oocl.demo.repository.TodoListRepositpory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ public class TodoListService {
     }
 
     public TodoItem addTodoItem(TodoItem item){
-        item.setCreated(new Date());
+        item.setType("未完成");
         return this.repositpory.save(item);
     }
 
@@ -25,8 +26,12 @@ public class TodoListService {
        return this.repositpory.save(item);
     }
 
-    public List<TodoItem> getAllItems() {
-        return repositpory.findAll();
+    public List<TodoItem> getItems(TodoItem item){
+        return repositpory.findAll(Example.of(item));
+    }
+
+    public TodoItem getItemById(Long id){
+        return repositpory.findById(id).get();
     }
 
     public  boolean deleteItem( TodoItem item){
