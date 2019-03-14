@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -97,6 +98,7 @@ public class TodoListControllerTest {
         // given
         TodoItem item1 = new TodoItem("do homework", "未完成");
         TodoItem item2 = new TodoItem("do homework", "未完成");
+        when(this.todoListService.getItemById(any())).thenReturn(item2);
         // when & then
         mockMvc.perform(
                 delete(url).content(mapper.writeValueAsString(item1)).contentType(MediaType.APPLICATION_JSON_UTF8))

@@ -12,8 +12,6 @@ import java.util.Optional;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
-import java.util.Collections;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -56,11 +54,10 @@ public class TodoListServiceTest {
 
     @Test
     public void should_execute_delete_function(){
-      TodoItem todoItem = mock(TodoItem.class);
-      //when
-      todoListService.deleteItem(todoItem);
-      //then
-      verify(repositpory).deleteById(todoItem.getId());
+        TodoItem item = new TodoItem();
+        item.setId(1L);
+        this.todoListService.deleteItem(item);
+        verify(this.repositpory).deleteById(1L);
     }
 
     @Test
