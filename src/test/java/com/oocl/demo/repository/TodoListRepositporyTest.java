@@ -100,16 +100,5 @@ public class TodoListRepositporyTest {
         this.repositpory.deleteById(item.getId());
         assertThat(this.repositpory.count(), is(oldSize - 1));
     }
-  @Test
-  public void should_total_size_decrease_1_after_1_items_deleted(){
-    //given
-    TodoItem item = new TodoItem("do homework", "test");
-    List<TodoItem> todoItems = this.repositpory.saveAll(Arrays.asList(item, item, item));
-    int oldSize = this.repositpory.findAll().size();
-    //when
-    this.repositpory.delete(todoItems.get(0));
-    //then
-    int newSize = this.repositpory.findAll().size();
-    assertThat(newSize, is(oldSize -1));
-  }
+
 }

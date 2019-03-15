@@ -23,7 +23,7 @@ public class TodoListService {
     }
 
     public  TodoItem updateTodoItems(TodoItem item){
-       return this.repositpory.save(item);
+        return this.repositpory.save(item);
     }
 
     public List<TodoItem> getItems(TodoItem item){
