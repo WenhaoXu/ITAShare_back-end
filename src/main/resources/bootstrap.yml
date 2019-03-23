@@ -1,11 +1,9 @@
-server:
-  port: 1234
-
 spring:
   application:
     name: todoListService
+  profiles:
+    active:
+      default
   cloud:
     config:
-      uri: http://localhost:1212/
-      profile: default
-      label: master
+      uri: http://localhost:1212
