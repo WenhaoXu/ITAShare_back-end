@@ -2,7 +2,6 @@ package com.oocl.demo.domain;
 
 
 import javax.persistence.*;
-import java.util.Date;
 
 
 @Entity
@@ -57,6 +56,4 @@ public class TodoItem {
     public void setContent(String content) {
         this.content = content;
     }
-
-
 }
